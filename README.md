@@ -22,7 +22,6 @@ For example, given the array:
 
 We could enumerate the various search results:
 
-```
 |Key| <S | <  | <= | <=S| == | >=N| >= |  > | >S |
 |:--|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | -1|   0|   0|   0|   0| n/a|   0| n/a| n/a|   0|
@@ -39,8 +38,9 @@ We could enumerate the various search results:
 | 10|   5|   5|   5|   5| n/a|   4|   4|   4|   4|
 | 11|   5| n/a|   5|   5|   5|   5|   5|   4|   4|
 | 12|   5| n/a| n/a|   5| n/a|   5| n/a|   5|   5|
-|---| LTS|  LT| LTE|LTEN|  EQ|GTEN| GTE|  GT| GTS|
+| --| LTS|  LT| LTE|LTEN|  EQ|GTEN| GTE|  GT| GTS|
 
+```
 Legend:
 
   <S  Advanced Binary Search: pos where key <  data[pos], or size if not found
