@@ -1,18 +1,20 @@
 # Advanced Binary Search
 
-What if we wanted something _like_ Binary Search but with minor differences.
+What if we wanted something _like_ Binary Search but with minor differences?
 That is, instead of searching for an _exact_ match we wanted to find keys
-that are "close" -- where close can mean one of 8 things:
+that are "close" -- where close can mean one of 9 things:
 
-* `LTS`:  Find the "sticky" item Less Then the Key or Size-1 if not found
-* `LT`:   Find the first item Less Then the key, or -1 if not found
-* `LTE`:  Find the first item Less Then Or Equal to the key, or -1 if not found
-* `LTEN`: Find the next item Less Then or Equal to the Key or Size if not found
-* `GTE`:  Find the first item Greater Than or Equal to the key
-* `GT`:   Find the first item Greater Than the key
-* 'GTS`:  Find the "sticky" item Greater Then the Key or 0 if not found
+* `LTS`  or `<S` : Find the "sticky" item Less Than the Key or Size-1 if not found
+* `LT`   or `<`  : Find the first item Less Than the key, or -1 if not found
+* `LTE`  or `<=` : Find the first item Less Than Or Equal to the key, or -1 if not found
+* `LTEN` or `<=S`: Find the next item Less Than or Equal to the Key or Size if not found
+* `EQ`   or `==` : See note below.
+* `GTEN` or `>=N`: Find the first item Greater Than or Equal to the key
+* `GTE`  or `>=` : Find the first item Greater Than or Equal to the key
+* `GT`   or `>`  : Find the first item Greater Than the key
+* `GTS`  or `>=S`: Find the "sticky" item Greater Than the Key or 0 if not found
 
-Note: The _ninth_ one `EQ` is the classic Binary Search. 
+Note: The _ninth_ case, `EQ`, is the classic Binary Search -- an exact match.
 
 For example, given the array:
 
@@ -20,7 +22,7 @@ For example, given the array:
     [ 1, 3, 5, 7, 9, 11 ]
 ```
 
-We could enumerate the various search results:
+We could enumerate the various search results with this table:
 
 |Key| <S | <  | <= | <=S| == | >=N| >= |  > | >S |
 |:--|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -47,8 +49,8 @@ Legend:
   <   Advanced Binary Search: pos where key <  data[pos]
   <=  Advanced Binary Search: pos where key <= data[pos]
  <=N  Advanced Binary Search: pos where key <= data[pos], or size-1 if not found
-  ==  Exact    Binary Search: pos where key == data[pos], else -1
- >=N  Advanced Binary Search:
+  ==  Exact    Binary Search: pos where key == data[pos], else -1 if not found
+ >=N  Advanced Binary Search: pos where key >= data[pos], else size if not found
   >=  Advanced Binary Search: pos where key >= data[pos]
   >   Advanced Binary Search: pos where key >  data[pos]
   >S  Advanced Binary Search: pos where key >  data[pos], or size if not found
