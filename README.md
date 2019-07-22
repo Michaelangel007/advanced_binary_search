@@ -3,9 +3,8 @@
 ## Table of Contents
 
 * [Introduction](https://github.com/Michaelangel007/advanced_binary_search#Introduction)
-* [C++/C](https://github.com/Michaelangel007/advanced_binary_search#C++/C)(C++/C)
+* [C++/C](https://github.com/Michaelangel007/advanced_binary_search#cc)
 * [JavaScript](https://github.com/Michaelangel007/advanced_binary_search#JavaScipt)
-
 
 # Introduction
 
@@ -117,7 +116,7 @@ key: 12, min: 6, mid: 5, max:  5,  mid<num: 0
 ```
 
 
-## C++/C
+# C++/C
 
 ```c
 enum { KEY_NOT_FOUND = -1 };
@@ -205,7 +204,7 @@ int BinSearchGreaterThen( int key, const int size, int data[] )
 }
 ```
 
-## Javascript
+# JavaScript
 
 ```Javascript
     var KEY_NOT_FOUND = -1;
