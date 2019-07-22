@@ -1,5 +1,14 @@
 # Advanced Binary Search
 
+## Table of Contents
+
+* [Introduction](https://github.com/Michaelangel007/advanced_binary_search#Introduction)
+* [C++/C](https://github.com/Michaelangel007/advanced_binary_search#C++/C)(C++/C)
+* [JavaScript](https://github.com/Michaelangel007/advanced_binary_search#JavaScipt)
+
+
+# Introduction
+
 What if we wanted something _like_ Binary Search but with minor differences?
 That is, instead of searching for an _exact_ match we wanted to find keys
 that are "close" -- where close can mean one of 9 things:
@@ -7,12 +16,12 @@ that are "close" -- where close can mean one of 9 things:
 * `LTS`  or `<S` : Find the "sticky" item Less Than the Key or Size-1 if not found
 * `LT`   or `<`  : Find the first item Less Than the key, or -1 if not found
 * `LTE`  or `<=` : Find the first item Less Than Or Equal to the key, or -1 if not found
-* `LTEN` or `<=S`: Find the next item Less Than or Equal to the Key or Size if not found
+* `LTEN` or `<=N`: Find the next item Less Than or Equal to the Key or Size if not found
 * `EQ`   or `==` : See note below.
-* `GTEN` or `>=N`: Find the first item Greater Than or Equal to the key
-* `GTE`  or `>=` : Find the first item Greater Than or Equal to the key
-* `GT`   or `>`  : Find the first item Greater Than the key
-* `GTS`  or `>=S`: Find the "sticky" item Greater Than the Key or 0 if not found
+* `GTEN` or `>=N`: Find the first item Greater Than or Equal to the key, or Size if not found
+* `GTE`  or `>=` : Find the first item Greater Than or Equal to the key, or -1 if not found
+* `GT`   or `>`  : Find the first item Greater Than the key, or -1 if not found
+* `GTS`  or `>S` : Find the "sticky" item Greater Than the Key or 0 if not found
 
 Note: The _ninth_ case, `EQ`, is the classic Binary Search -- an exact match.
 
@@ -24,10 +33,10 @@ For example, given the array:
 
 We could enumerate the various search results with this table:
 
-|Key| <S | <  | <= | <=S| == | >=N| >= |  > | >S |
+|Key| <S | <  | <= | <=N| == | >=N| >= |  > | >S |
 |:--|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| -1|   0|   0|   0|   0| n/a|   0| n/a| n/a|   0|
-|  0|   0|   0|   0|   0| n/a|   0| n/a| n/a|   0|
+| -1|   0|   0|   0|   0| n/a| n/a| n/a| n/a|   0|
+|  0|   0|   0|   0|   0| n/a| n/a| n/a| n/a|   0|
 |  1|   1|   1|   0|   0|   0|   0|   0| n/a|   0|
 |  2|   1|   1|   1|   1| n/a|   0|   0|   0|   0|
 |  3|   2|   2|   1|   1|   1|   1|   1|   0|   0|
@@ -39,7 +48,7 @@ We could enumerate the various search results with this table:
 |  9|   5|   5|   4|   4|   4|   4|   4|   3|   3|
 | 10|   5|   5|   5|   5| n/a|   4|   4|   4|   4|
 | 11|   5| n/a|   5|   5|   5|   5|   5|   4|   4|
-| 12|   5| n/a| n/a|   5| n/a|   5| n/a|   5|   5|
+| 12|   5| n/a| n/a|   5| n/a|   5|   5|   5|   5|
 | --| LTS|  LT| LTE|LTEN|  EQ|GTEN| GTE|  GT| GTS|
 
 ```
@@ -51,8 +60,8 @@ Legend:
  <=N  Advanced Binary Search: pos where key <= data[pos], or size-1 if not found
   ==  Exact    Binary Search: pos where key == data[pos], else -1 if not found
  >=N  Advanced Binary Search: pos where key >= data[pos], else size if not found
-  >=  Advanced Binary Search: pos where key >= data[pos]
-  >   Advanced Binary Search: pos where key >  data[pos]
+  >=  Advanced Binary Search: pos where key >= data[pos], else -1 if not found
+  >   Advanced Binary Search: pos where key >  data[pos], else -1 if not found
   >S  Advanced Binary Search: pos where key >  data[pos], or size if not found
 ```
 
@@ -61,6 +70,8 @@ How do we find these algorithms?
 Instead of returning when we find a key, lets output the current state:
 
 ```Javascript
+    var KEY_NOT_FOUND = -1;
+
     // ==================================================
     function BinSearchPrint( key, data )
     {
@@ -80,9 +91,9 @@ Instead of returning when we find a key, lets output the current state:
         var pad = function(n) { return (' '+n).slice(-2); }
 
         console.log( "key: %s, min: %d, mid: %d, max: %s,  mid<num:"
-            ,pad(key), min, mid, pad(max), (mid<num)|0 );
+            , pad(key), min, mid, pad(max), (mid<num)|0 );
 
-        return -1; // KEY_NOT_FOUND
+        return KEY_NOT_FOUND;
     }
 ```
 
@@ -106,9 +117,11 @@ key: 12, min: 6, mid: 5, max:  5,  mid<num: 0
 ```
 
 
-## Advanced Binary Search C Code
+## C++/C
 
 ```c
+enum { KEY_NOT_FOUND = -1 };
+
 int BinSearchLessThanEqual( int key, const int size, int data[] )
 {
     const int num = size - 1;
@@ -126,10 +139,10 @@ int BinSearchLessThanEqual( int key, const int size, int data[] )
     }
 
     if( max < 0 )
-        return 0;  // key < data[0]
+        return 0;             // key < data[0]
     else
     if( min > num )
-        return -1; // key >= data[ num ] // KEY_NOT_FOUND
+        return KEY_NOT_FOUND; // key >= data[ num ]
     else
         return (min < max)
             ? min
@@ -192,9 +205,11 @@ int BinSearchGreaterThen( int key, const int size, int data[] )
 }
 ```
 
-Corresponding Javascript versions:
+## Javascript
 
 ```Javascript
+    var KEY_NOT_FOUND = -1;
+
 // ==================================================
 function BinSearch( key, data )
 {
@@ -211,7 +226,7 @@ function BinSearch( key, data )
         else /* (data[mid] = key)*/ return mid    ;
     }
 
-    return -1; // KEY_NOT_FOUND
+    return KEY_NOT_FOUND;
 }
 
 // ==================================================
@@ -231,10 +246,10 @@ function BinSearchLessThanEqual( key, data )
     }
 
     if( max < 0 )
-        return 0;  // key < data[0]
+        return 0;             // key < data[0]
     else
     if( min > num )
-        return -1; // key >= data[ num ] // KEY_NOT_FOUND
+        return KEY_NOT_FOUND; // key >= data[ num ]
     else
         return (min < max)
             ? min
