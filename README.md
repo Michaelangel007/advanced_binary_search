@@ -8,6 +8,13 @@
 
 # Introduction
 
+**Definition:**
+
+* `key` The thing we are looking for,
+* `values` The entire "set" of things we are searching through
+
+Sometimes the nomenclature `needle` / `haystack` is used instead of `key` / `value`.
+
 What if we wanted something _like_ Binary Search but with minor differences?
 That is, instead of searching for an _exact_ match we wanted to find keys
 that are "close" -- where close can mean one of 9 things:
