@@ -8,12 +8,14 @@
 
 # Introduction
 
-**Definition:**
+## Definitions
 
 * `key` The thing we are looking for,
 * `values` The entire "set" of things we are searching through
 
 Sometimes the nomenclature `needle` / `haystack` is used instead of `key` / `value`.
+
+## Context
 
 What if we wanted something _like_ Binary Search but with minor differences?
 That is, instead of searching for an _exact_ match we wanted to find keys
@@ -29,7 +31,7 @@ that are "close" -- where close can mean one of 9 things:
 * `GT`   or `>`  : Find the first item Greater Than the key, or -1 if not found
 * `GTS`  or `>S` : Find the "sticky" item Greater Than the Key or 0 if not found
 
-Note: The _ninth_ case, `EQ`, is the classic Binary Search -- an exact match.
+**Note:** The _ninth_ case, `EQ`, is the classic Binary Search -- an exact match.
 
 For example, given the array:
 
@@ -37,7 +39,7 @@ For example, given the array:
     [ 1, 3, 5, 7, 9, 11 ]
 ```
 
-We could enumerate the various search results with this table:
+We could enumerate the various keys and the corresponding search results with this table:
 
 |Key| <S | <  | <= | <=N| == | >=N| >= |  > | >S |
 |:--|---:|---:|---:|---:|---:|---:|---:|---:|---:|
