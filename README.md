@@ -318,4 +318,4 @@ The stack overflow question that started it all and my original answer:
 
 * [modify binary search to find the next bigger item than the key](https://stackoverflow.com/questions/16219998/modify-binary-search-to-find-the-next-bigger-item-than-the-key/28309550#28309550)
 * [Beautiful Code](https://www.amazon.com/Beautiful-Code-Leading-Programmers-Practice/dp/0596510047/)
-* (Three Beautiful Quicksorts)[https://www.youtube.com/watch?v=QvgYAQzg1z8)
+* [Three Beautiful Quicksorts](https://www.youtube.com/watch?v=QvgYAQzg1z8)
