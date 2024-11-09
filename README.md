@@ -127,8 +127,31 @@ key: 12, min: 6, mid: 5, max:  5,  mid<num: 0
 
 # C++/C
 
+See [demo.cpp](demo.cpp).
+
 ```c
 enum { KEY_NOT_FOUND = -1 };
+
+/* @param key  What to look for,
+   @param size Array size; 1 past the last element,
+   @param data The sorted array to search in.
+*/
+// ==================================================
+int BinSearch( int key, int size, int *data )
+{
+    int min = 0;
+    int max = size - 1;
+
+    while (min <= max)
+    {
+        int mid = min + ((max - min) / 2);
+
+        /**/ if (data[mid] < key)   min  = mid + 1;
+        else if (data[mid] > key)   max  = mid - 1;
+        else /* (data[mid] = key)*/ return mid;
+    }
+    return KEY_NOT_FOUND;
+}
 
 int BinSearchLessThanEqual( int key, const int size, int data[] )
 {
